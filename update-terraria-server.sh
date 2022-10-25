@@ -5,6 +5,7 @@ LATEST_ZIP=`curl -s https://terraria.fandom.com/wiki/Server | grep -Po "https?:/
 VERSION=`echo $LATEST_ZIP | grep -Po "[0-9]+"`
 ZIP_DOWNLOAD=/home/fox/new-terraria.zip
 CURRENT=/home/fox/terraria-current
+PREVIOUS=/home/fox/terraria-previous
 
 #Display version that will be installed and wait for user confirmation
 echo Version = $VERSION
@@ -14,8 +15,10 @@ read -p "Press any key to continue..."
 #stop the server
 sudo systemctl stop terraria.service
 
-#delete old files and download new release
+#backup+clean old files and download new release
 cd /home/fox/
+rm -rf $PREVIOUS/*
+cp -r $CURRENT/* $PREVIOUS/
 rm $ZIP_DOWNLOAD
 rm -rf $CURRENT/*
 wget $LATEST_ZIP -O $ZIP_DOWNLOAD
