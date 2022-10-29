@@ -1,5 +1,6 @@
 I followed this handy Linode guide to setup Terraria on a Linux server as a systemd service:
 https://www.linode.com/docs/guides/host-a-terraria-server-on-your-linode/
+<br/>NOTE: They have you run the server from the root account which I would not recommend, I suggest using a separate user account instead for security reasons.
 
 Here are a few bash scripts I made to further automate managing this server:
 
